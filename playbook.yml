@@ -8,12 +8,12 @@
   # Set our hostname
   - name:  Set our hostname
     hostname:
-      name:  ansible-helloworld
+      name:  "{{ HOSTNAME }}"
 
   # Install base packages
   - name:  Install base packages
     apt:
-      name:  {{ item }}
+      name:  "{{ item }}"
       state: present
       update_cache: yes
     with_items:

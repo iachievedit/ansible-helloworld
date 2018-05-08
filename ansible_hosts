@@ -1,2 +1,2 @@
 [all]
-18.188.72.168
+18.188.72.168 HOSTNAME=ansible-helloworld ENVIRONMENT=staging
