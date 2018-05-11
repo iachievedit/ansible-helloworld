@@ -1,2 +1,2 @@
-[all]
-18.188.72.168 HOSTNAME=ansible-helloworld ENVIRONMENT=staging
+[staging]
+ec2-18-188-72-168.us-east-2.compute.amazonaws.com
