@@ -20,9 +20,30 @@
     with_items:
       - htop
       - zsh
+      - s3cmd
 
   # Create /etc/environment
   - name:  Create /etc/environment
     template:
       src:  environment.j2
       dest: /etc/environment
+
+  # Create .s3cfg
+  - name:  Create .s3cfg
+    template:
+      src:  s3cfg.j2
+      dest: /home/ubuntu/.s3cfg
+      owner: ubuntu
+      group: ubuntu
+
+  # Copy key.pem
+  - name:  Copy key.pem
+    copy:
+      src:  key.pem
+      dest: /etc/ssl/private
+      mode: 0400
+
+  # Display all variables
+  - name:  Display variables
+    debug:  var=hostvars[inventory_hostname]
+    tags:  ['never', 'debug']

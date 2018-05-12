@@ -1,2 +1,5 @@
 ---
 HOSTNAME:  helloworld
+
+AWS_ACCESS_KEY:  '{{ VAULT_AWS_ACCESS_KEY }}'
+AWS_SECRET_KEY:  '{{ VAULT_AWS_SECRET_KEY }}'

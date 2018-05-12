@@ -1,0 +1,2 @@
+host_vars/*/vault diff=ansible-vault merge=binary
+files/key.pem diff=ansible-vault merge=binary
