@@ -20,5 +20,5 @@ git checkout partX
 
 where X is the part number (e.g., `part2`, `part3`).
 
-
+The `master` branch (should) contain everything in the series thus far.
 
