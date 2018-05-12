@@ -22,3 +22,12 @@ where X is the part number (e.g., `part2`, `part3`).
 
 The `master` branch (should) contain everything in the series thus far.
 
+## Providing Feedback
+
+I love feedback!  I don't know everything there is to know about Ansible (and definitely not AWS), so if you see something that could be improved upon or there's a better way to do it, please don't be shy in creating an issue against the repository.  
+
+Thanks!
+
+@iachievedit
+
+
