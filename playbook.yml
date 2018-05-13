@@ -22,12 +22,6 @@
       - zsh
       - s3cmd
 
-  # Create /etc/environment
-  - name:  Create /etc/environment
-    template:
-      src:  environment.j2
-      dest: /etc/environment
-
   # Create .s3cfg
   - name:  Create .s3cfg
     template:
@@ -42,6 +36,79 @@
       src:  key.pem
       dest: /etc/ssl/private
       mode: 0400
+
+  # Install Python modules for AWS tasks
+  - name:  Install pip
+    apt:
+      name: python-pip
+      state: present
+  - name:  Install Python modules for AWS tasks
+    pip:
+      name:  boto
+      state: present
+
+  # Create Amazon RDS database
+  - name:  Create AWS RDS database
+    rds:
+      aws_access_key:      "{{ AWS_RDS_ACCESS_KEY }}"
+      aws_secret_key:      "{{ AWS_RDS_SECRET_KEY }}"
+      command:             create
+      db_engine:           MySQL
+      region:              us-east-2
+      vpc_security_groups: "{{ AWS_RDS_SECURITY_GROUP }}"
+      instance_name:       "{{ OPERATING_ENVIRONMENT }}-mysql"
+      instance_type:       db.t2.micro
+      username:            "{{ MYSQL_ADMIN_USERNAME }}"
+      password:            "{{ MYSQL_ADMIN_PASSWORD }}"
+      publicly_accessible: no
+      size:                10
+      wait:                yes
+      wait_timeout:        900
+    register:  rds
+
+  - name:  Install MySQL dependencies
+    apt:
+      name:  "{{ item }}"
+      state: present
+    with_items:
+      - mysql-client
+      - libmysqlclient-dev
+
+  - name:  Install Python modules for MySQL tasks
+    pip:
+      name:  mysql-python
+      state: present
+
+  - name:  Create MySQL database
+    mysql_db:
+      login_host:      "{{ rds.instance.endpoint }}"
+      login_user:      "{{ MYSQL_ADMIN_USERNAME }}"
+      login_password:  "{{ MYSQL_ADMIN_PASSWORD }}"
+      name:            helloworld
+      state:           present
+
+  # Create /etc/environment
+  # /etc/environment references our RDS output
+  - name:  Create /etc/environment
+    template:
+      src:  environment.j2
+      dest: /etc/environment
+
+  # Create .my.cnf
+  - name:  Create .my.cnf
+    blockinfile:
+      create:  yes
+      path:    /home/ubuntu/.my.cnf
+      owner:   ubuntu
+      group:   ubuntu
+      block: |
+        [client]
+        host="{{ rds.instance.endpoint }}"
+        user="{{ MYSQL_ADMIN_USERNAME }}"
+        password="{{ MYSQL_ADMIN_PASSWORD }}"
+    tags: mycnf
+
+
 
   # Display all variables
   - name:  Display variables
