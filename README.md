@@ -7,6 +7,7 @@ This is a companion repository to a tutorial series on Ansible and AWS at our [i
 * [Part 1 - Getting Started](https://dev.iachieved.it/iachievedit/ansible-and-aws-part-1/)
 * [Part 2 - Variables and Facts](https://dev.iachieved.it/iachievedit/ansible-and-aws-part-2/)
 * [Part 3 - Ansible Vault](https://dev.iachieved.it/iachievedit/ansible-and-aws-part-3/)
+* [Part 4 - AWS RDS with Ansible](https://dev.iachieved.it/iachievedit/ansible-and-aws-part-4/)
 
 ## How to Use
 
@@ -21,6 +22,8 @@ git checkout partX
 where X is the part number (e.g., `part2`, `part3`).
 
 The `master` branch (should) contain everything in the series thus far.
+
+The encrypted files included in the repository should be deleted and replaced with your own.  These include `key.pem` and all of the `vault` files.
 
 ## Providing Feedback
 
