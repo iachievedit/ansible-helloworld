@@ -13,8 +13,7 @@
     update_cache: true
   with_items:  "{{ shells }}"
 
-# Creating users for production servers
-
+# Create users for production servers
 - block:
   - name:  Create users for production servers
     user:
@@ -34,7 +33,7 @@
     - "('architects' in item.groups) or
        ('operations' in item.groups)"
 
-
+# Create users for staging servers
 - block:
   - name:  Create users for staging servers
     user:
@@ -67,20 +66,16 @@
       validate: 'visudo -cf %s'
     when: "'staging' in group_names"
 
-- name:  Delete users
+# Delete users
+- name:  Delete users in deletedusers list
   user:
     name:  "{{ item.name }}"
     state: absent
   loop:  "{{ deletedusers }}"
 
-- name:  Delete groups
+# Delete groups
+- name:  Delete groups in deletedgroups list
   group:
     name:  "{{ item.name }}"
     state: absent
   loop:  "{{ deletedgroups }}"
-
-# Display all variables
-- name:  Display variables
-  debug:
-    var:  users
-  tags:  ['never', 'debug']
