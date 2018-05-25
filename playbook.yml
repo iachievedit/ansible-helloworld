@@ -4,8 +4,12 @@
   become:       true
   become_user:  root
   become_method: sudo
+
+  roles:
+    - {role:  users, tags:  users}
     
   tasks:
+
   # Set our hostname
   - name:  Set our hostname
     hostname:

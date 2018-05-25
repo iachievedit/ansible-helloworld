@@ -1,0 +1,26 @@
+---
+shells:
+  - zsh
+  - fish
+  - tcsh
+  - ksh
+
+usergroups:
+  - architects
+  - developers
+  - operations
+  - testers
+  - tptesters
+
+users:
+  - {name:  alice, groups: [architects, developers], shell: /usr/bin/fish}
+  - {name:  bob,   groups: [developers],             shell: /usr/bin/tcsh}
+  - {name:  carol, groups: [operations],             shell: /bin/bash}
+  - {name:  dave,  groups: [testers],                shell: /usr/bin/ksh}
+  - {name:  eve,   groups: [tptesters],              shell: /usr/bin/zsh}
+
+deletedusers:
+  - {name:  frank}
+
+deletedgroups:
+  - {name:  developer}
