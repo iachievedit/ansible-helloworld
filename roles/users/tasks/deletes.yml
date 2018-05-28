@@ -1,0 +1,14 @@
+---
+# Delete users
+- name:  Delete users in deletedusers list
+  user:
+    name:  "{{ item.name }}"
+    state: absent
+  loop:  "{{ deletedusers }}"
+
+# Delete groups
+- name:  Delete groups in deletedgroups list
+  group:
+    name:  "{{ item.name }}"
+    state: absent
+  loop:  "{{ deletedgroups }}"

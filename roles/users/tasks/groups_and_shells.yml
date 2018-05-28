@@ -1,0 +1,13 @@
+---
+- name:  Create groups
+  group:
+    name:  "{{ item }}"
+    state: present
+  loop:  "{{ usergroups }}"
+
+- name:  Install shells
+  apt:
+    name:  "{{ item }}"
+    state: present
+    update_cache: true
+  with_items:  "{{ shells }}"
