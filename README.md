@@ -8,6 +8,7 @@ This is a companion repository to a tutorial series on Ansible and AWS at our [i
 * [Part 2 - Variables and Facts](https://dev.iachieved.it/iachievedit/ansible-and-aws-part-2/)
 * [Part 3 - Ansible Vault](https://dev.iachieved.it/iachievedit/ansible-and-aws-part-3/)
 * [Part 4 - AWS RDS with Ansible](https://dev.iachieved.it/iachievedit/ansible-and-aws-part-4/)
+* [Part 5 - Provisioning Users with Ansible](https://dev.iachieved.it/iachievedit/ansible-and-aws-part-5/)
 
 ## How to Use
 
